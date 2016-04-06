@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			each item in goods
+				.col-md-2
+					.thumbnail
+						a(herf = "/shop/#{item_id}")
+							img(src = "#{item.poster}", alt = "item.title")
+						.captain
+							h3 #{item.title}
+							p: a.btn.btn-primary(href = "/shop/#{item._id}", role = "button") moredetails
+							-console.log('aaaaaaa')
