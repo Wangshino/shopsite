@@ -1,7 +1,12 @@
 var express = require('express')
 var path = require('path')
+var mongoose = require('mongoose')
+// var bodyParser = require('bodyParser')
 var port = 3000
 var app = express()
+
+// mongoose.connect('mongodb://localhost/test')
+
 app.set('views', './views/pages')
 app.set('view engine', 'jade')
 // app.use(express.bodyParser())
@@ -16,7 +21,7 @@ app.get('/', function(req, res){
 			title : 'HAIWEI',
 			_id : 1,
 			poster : 'http://www.technobuffalo.com/wp-content/uploads/2016/02/25251765622_3f506fa53b_b.jpg'
-			},{
+			}, {
 			title : 'HAIWEI2',
 			_id : 2,
 			poster : 'http://www.technobuffalo.com/wp-content/uploads/2016/02/25251765622_3f506fa53b_b.jpg'
