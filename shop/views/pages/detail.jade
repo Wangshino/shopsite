@@ -5,16 +5,16 @@ block content
 		.row
 			.col-md-7
 				-/*flash*/
-				embed(src = "#{shop.flash}", allowFullScreen = "true", quality = "high", width = "720", height = "600", align = "middle", allowScriptAcess="always", type="application/x-shockwave-flash")
+				embed(src = "#{commodity.flash}", allowFullScreen = "true", quality = "high", width = "720", height = "600", align = "middle", allowScriptAcess="always", type="application/x-shockwave-flash")
 			.col-md-5
 				dl.dl-horizontal
 					dt Name
-					dd= shop.title
+					dd= commodity.title
 					dt  orign
-					dd= shop.orign
+					dd= commodity.orign
 					dt Year
-					dd= shop.year
+					dd= commodity.year
 					dt Summary
-					dd= shop.summary
+					dd= commodity.summary
 					.btn-pay
 						a.btn.btn-primary(href = "", role= "button") Pay for it

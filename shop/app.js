@@ -17,7 +17,7 @@ console.log("started on port " + port)
 app.get('/', function(req, res){
 	res.render('index', {
 		title : 'shop website',
-		goods : [{
+		commodity : [{
 			title : 'HAIWEI',
 			_id : 1,
 			poster : 'http://www.technobuffalo.com/wp-content/uploads/2016/02/25251765622_3f506fa53b_b.jpg'
@@ -31,7 +31,7 @@ app.get('/', function(req, res){
 app.get('/shop/:id', function(req, res){
 	res.render('detail', {
 		title : 'Details',
-		shop : {
+		commodity : {
 			title : 'IphoneSE',
 			orign : 'CN',
 			year : '2016 - 3',

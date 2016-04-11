@@ -24,6 +24,7 @@ var UserSchema = ({
 		}
 	}
 })
+/*every event 'save' record that time*/
 UserSchema.pre('save',function(next){
 	var user=this;
 	if(this.isNew){
