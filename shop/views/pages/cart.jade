@@ -6,72 +6,7 @@ html
 		link(href = "/bootstrap/dist/css/bootstrap.min.css", rel = "stylesheet")
 		script(src = "/jquery/dist/jquery.min.js")
 		script(src = "/bootstrap/dist/js/bootstrap.min.js")
-		script(type = "text/javascript").
-			$(function () {
-			// 商品+-
-				$('.li-quantity a').click(function(){
-					var self = $(this);
-					var type = self.attr('data-type'),
-						num = parseFloat(self.siblings('input').val());
-					if(type == 'add'){
-						num += 1;
-					}else if(type == 'subtr'){
-						if(num > 1){
-							num -= 1;
-						}else{
-							return false;
-						}
-					}
-					self.siblings('input').val(num);
-					tamount();
-				});
-				//checkbox 单选事件
-				$('input[name="chkItem"]:checkbox').click(function(){
-					var isCheck = $('input[name="chkItem"]:not(:checked)').length? false: true;
-					$('#CheckAll').prop("checked", isCheck);
-						tamount();
-				});
-				//checkbox 全选事件
-				$('#CheckAll').click(function(){
-					var self = $(this);
-					$('input[name="chkItem"]').each(function(){
-						$(this).prop("checked",self.is(':checked'));
-					});
-					tamount();
-				});
-			});
-			var sum = 0;
-			function Clearing() {
-				$('input[name= "chkItem"] : checked').each(function(){
-					var self = $(this),
-					index = self.attr('data-index'),
-					cid = self.attr('data-id');
-					var quantity = $('#Q'+ index).val();
-					var data = {"cid" : cid, "cnum" : quantity};
-						$.ajax({
-							url : '/cart/clearing',
-							type : 'post',
-							data : data,
-							success:function(data,status){
-							},
-							error:function(data,status){
-							}
-						});
-					});
-					alert('￥'+sum);
-					location.href = "cart";
-				}
-			function tamount() {
-				sum = 0,
-				$('input[name= "chkItem"] : checked').each( function(){
-					var self = $(this),
-					price = self.attr('data-price'),
-					index = self.attr('data-index');
-					var quantity = $('#Q'+ index).val();
-					sum += (parseFloat(price)* parseFloat(quantity));
-				});
-				$('#money').jade('￥'+ sum +'.00')
-			}
+		script(src='cart.js').
 		style(type = "text/css").
 			.cart-heading{
 				height: 40px;
@@ -89,12 +24,12 @@ html
 				float: left;
 				height: 80px;
 			}
-			li-checkbox input{
+			.li-checkbox input{
 				margin: 20px 5px 0 0;
 			}
-			.li-img a img{
-				width: 40px;
-				height: 50px;
+			.li-img img{
+				width: 140px;
+				height: 100px;
 			}
 			.li-content{
 				margin: 20px 0 0 30px;
@@ -134,13 +69,21 @@ html
 							span(style='padding-right: 0px;') 操作
 					.cart-body
 						ul
-							-var i
-							for(i in carts)
-								if(!carts[i].cId)
+							-for(var i in Cart)
+								if(!Cart[i].cId)
 									continue
-							li
-								.li-checkboxs
-									//- input(data-id= #{carts[i]._id}, data-index= #{i}, data-price=#{item.cPrice},name="chkItem",  class="li-checkbox input", type="checkbox")
+								li
+									.li-checkbox
+										input(type= 'checkbox')
+									.li-img
+										img(src="#{Cart[i].cImgSrc}")
+									.li-content
+										a(herf= '/shop/#{item_id}') #{Cart[i].cName}
+									.li-price
+										span #{Cart[i].cPrice}
+									.li-quantity
+										a(data-type='add' herf= 'javascript:void(0);' class="btn btn-default btn-xs") +
+										input(id= '#{i}')
 					div(style='float: right;height: 35px;width:330px;') 总计：
 						span#money(style='color: red;font-size: 25px') ￥0.00
 						input.btn.btn-success(type='button', style='width: 130px; float:right;', onclick=' Clearing();', value='结算')
