@@ -1,0 +1,51 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		link(href = "/libs/bootstrap/dist/css/bootstrap.min.css", rel = "stylesheet")
+		script(src = "/libs/jquery/dist/jquery.min.js")
+		script(src = "/libs/bootstrap/dist/js/bootstrap.min.js")
+		script(src='js/cart.js')
+		style
+			include style.css
+
+	body
+		div(style='margin:50px auto;width: 900px;')
+			div
+				div
+					div(style='float:right;')
+						a.btn.btn-xs.btn-success(href='/', style='margin-right: 35px;') index
+					h2 cart
+					hr
+				div
+					.cart-heading
+						div(style='padding: 10px 0 0 10px')
+							span(style='margin-right: 200px;')
+								input#CheckAll(type= 'checkbox')
+							span(style='margin-right: 180px;') Commodity
+							span(style='margin-right: 210px;') Price
+							span(style='margin-right: 80px;') Quantity
+							span(style='padding-right: 0px;') Action
+					.cart-body
+						ul
+							-for(var i in cart)
+								if(!cart[i].cId)
+									continue
+								li
+									.li-checkbox
+										input(data-id= '#{cart[i].cId}' data-index= '#{i}' data-price= '#{cart[i].cPrice}' name ="chkItem" type= 'checkbox')
+									.li-img
+										img(src="#{cart[i].cImgSrc}")
+									.li-content
+										a.btn(herf= '/shop/#{cart[i].cId}') #{cart[i].cName}
+									.li-price
+										span #{cart[i].cPrice}
+									.li-quantity
+										a.btn.btn-xs(data-type='subtr' herf= 'javascript:void(0);') -
+										input(id= 'Q#{i}', style= 'width: 40px;', type= 'text', value= '#{cart[i].cQuantity}')
+										a.btn.btn-xs(data-type='add' herf= 'javascript:void(0);') +
+									.li-del
+										a.btn.btn-xs(href= '/delFromCart/#{cart[i]._id}') deleted
+					div(style='float: right;height: 35px;width:330px;') total:
+						span#money(style='color: red;font-size: 25px') ￥0.00
+						input.btn.btn-success(type='button', style='width: 130px; float:right;', onclick= 'Clearing();', value='结算')

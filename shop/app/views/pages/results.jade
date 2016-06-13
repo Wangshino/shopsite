@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.panel.panel-default
+				.panel-heading
+					h3 #{keyword}
+				.panel-body
+					if commodity
+						each item in commodity
+							.col-md-2
+								.thumbnail
+									a(herf = "/shop/#{item._id}")
+										img(src = "#{item.poster}")
+									.captain
+										h3  #{item.name}
+										p: a.btn.btn-primary(href = "/shop/#{item._id}", role = "button") moredetails
+			ul.pagination
+				- console.log()
+				- for (var i = 0; i < totalPage; i++) {
+					- if(currentPage === (i+1)) {
+						li.active
+							span #{currentPage}
+					- }
+					- else{
+						li
+							a(href= '/results?#{query}&p=#{i}') #{i + 1}
+					- }
+				- }

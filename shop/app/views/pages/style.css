@@ -1,0 +1,48 @@
+.captain {
+	text-align: center;
+}
+.btn-pay{
+	text-align: center;
+}
+.cart-heading{
+	height: 40px;
+	background-color: #EFEDED;
+}
+.cart-body{
+	background-color: #F7F7F7;
+}
+.cart-body ul li {
+	list-style-type: none;
+	margin-left: -30px;
+	width: 850px;
+}
+.cart-body ul li div{
+	float: left;
+	height: 80px;
+}
+.li-checkbox input{
+	margin: 20px 5px 0 0;
+}
+.li-img img{
+	width: 130px;
+	height: 100px;
+}
+.li-content{
+	margin: 20px 0 0 30px;
+	width: 280px;
+}
+.li-price{
+	margin: 20px 0 0 60px;
+	width: 10px;
+}
+.li-quantity{
+	margin: 20px 0 0 130px;
+	width: 100px;
+}
+.li-del{
+	margin: 20px 0 0 30px;
+	width: 50px;
+}
+.li-img{
+	margin: 0 0 0 10px;
+}

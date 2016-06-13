@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			each cat in categories
+				.panel.panel-default
+					.panel-heading
+						h3
+							a(href="/results?cat=#{cat._id}&p=0") #{cat.name}
+					.panel-body
+						if cat.commodity && cat.commodity.length > 0
+							each item in cat.commodity
+								.col-md-2
+									.thumbnail
+										a(herf = "/shop/#{item._id}")
+											if item.poster.indexOf('http:') > -1
+												img(src = "#{item.poster}", alt= "#{item.name}")
+											else
+												img(src = "/upload/#{item.poster}", alt= "#{item.name}")
+										.captain
+											h3 #{item.name}
+											-console.log(item)
+											p: a.btn.btn-primary(href = "/shop/#{item._id}", role = "button") moredetails
+		//- each item in commodity
+		//- 	.col-md-2
+		//- 		.thumbnail
+		//- 			a(herf = "/shop/#{item._id}")
+		//- 				img(src = "#{item.poster}")
+		//- 			.captain
+		//- 				h3 #{item.name}
+		//- 				p: a.btn.btn-primary(href = "/shop/#{item._id}", role = "button") moredetails
+						//- a.btn.btn-primary(herf = "/shop/addToCart/#{commoditys[i]._id}") +

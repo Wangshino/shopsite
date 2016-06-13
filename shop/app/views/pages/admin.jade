@@ -1,0 +1,52 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			form.form-horizontal(method = "post", action = "/admin/shop/new", enctype="multipart/form-data")
+				if commodity._id
+					input(type= "hidden", name= "commodity[_id]", value= "#{commodity._id}")
+				.form-group
+					label.col-sm-2.control-label(for = "inputCategory") Category
+					.col-sm-10
+						input#inputCategory.col-sm-10.form-control(type = "text", name = "commodity[categoryName]", value = commodity.categoryName)
+				.form-group
+					label.col-sm-2.control-label(for = "selectCategory") CategorySelect
+					.col-sm-10
+						select#selectCategory.col-sm-10.form-control(name= 'commodity[category]')
+							each cat in categories
+								option(value = cat._id) #{cat.name}
+				.form-group
+					label.col-sm-2.control-label(for = "inputName") GoodsName
+					.col-sm-10
+						input#inputName.col-sm-10.form-control(type = "text", name = "commodity[name]", value = commodity.name)
+				.form-group
+					label.col-sm-2.control-label(for="inputOrigin") Origin
+					.col-sm-10
+						input#inputOrigin.col-sm-10.form-control(type="text",name="commodity[origin]" value = commodity.origin)
+				.form-group
+					label.col-sm-2.control-label(for="inputYear") Year
+					.col-sm-10
+						input#inputYear.col-sm-10.form-control(type="text",name="commodity[year]" value = commodity.year)
+				.form-group
+					label.col-sm-2.control-label(for="inputPrice") Price
+					.col-sm-10
+						input#inputPrice.col-sm-10.form-control(type="text",name="commodity[price]" value = commodity.price)
+				.form-group
+					label.col-sm-2.control-label(for="inputFlash") FlashURL
+					.col-sm-10
+						input#inputFlash.col-sm-10.form-control(type = "text",name = "commodity[flash]" value = commodity.flash)
+				.form-group
+					label.col-sm-2.control-label(for="inputPoster") PosterPath
+					.col-sm-10
+						input#inputPoster.col-sm-10.form-control(type="text",name="commodity[poster]" value=commodity.poster)
+				.form-group
+					label.col-sm-2.control-label(for="uploadPoster") PosterUpload
+					.col-sm-10
+						input#uploadPoster(type="file", name="uploadPoster")
+				.form-group
+					label.col-sm-2.control-label(for="inputSummary") Summary
+					.col-sm-10
+						input#inputSummary.col-sm-10.form-control(type="textarea" name="commodity[summary]" value=commodity.summary)
+				.form-actions
+					button(type='submit',style='float:right' class='btn btn-primary') Submit

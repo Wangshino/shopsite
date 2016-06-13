@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			table.table.table-hover.table-bordered
+				thead
+					tr
+						th Name
+						th Origin
+						th Year
+						th Lastupdate
+						th Details
+						th Update
+						th Delete
+				tbody
+				each item in commodity
+					tr(class = "item-id-#{item._id}")
+						td #{item.name}
+						td #{item.origin}
+						td #{item.year}
+						td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+						td: a(target="_blank",href="/shop/#{item._id}") MoreDetails
+						td: a(target="_blank",href="/admin/update/#{item._id}") Update
+						td
+							button.btn.btn-danger.del(type = "button", data-id = "#{item._id}") Delete
+	script(src = "/js/admin.js")

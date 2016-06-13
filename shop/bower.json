@@ -1,0 +1,26 @@
+{
+  "name": "shopsite",
+  "homepage": "https://github.com/Wangshino/shopsite",
+  "authors": [
+    "727495636@qq.com <727495636@qq.com>"
+  ],
+  "description": "shop website",
+  "main": "",
+  "keywords": [
+    "shop"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "bootstrapvalidator": "bootstrapValidator#^0.5.3"
+  }
+}
